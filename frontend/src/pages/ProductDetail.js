@@ -10,7 +10,7 @@ function ProductDetail() {
   const [currentImg, setCurrentImg] = useState(0);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/products/${id}`)
+    axios.get(`https://ecommerce-scalar-labs-1.onrender.com/products/${id}`)
       .then(res => {
         setProduct(res.data); // ✅ use backend images
       })
@@ -20,7 +20,7 @@ function ProductDetail() {
   const userId = localStorage.getItem("userId");
 
   const addToCart = () => {
-    axios.post("http://localhost:5000/cart/add", {
+    axios.post("https://ecommerce-scalar-labs-1.onrender.com/cart/add", {
       user_id: userId,
       product_id: product.id,
       quantity: 1

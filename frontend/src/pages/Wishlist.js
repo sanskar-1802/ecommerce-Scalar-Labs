@@ -6,7 +6,7 @@ function Wishlist() {
   const userId = localStorage.getItem("userId") || 1;
 
   const fetchWishlist = () => {
-    axios.get(`http://localhost:5000/wishlist/${userId}`)
+    axios.get(`https://ecommerce-scalar-labs-1.onrender.com/wishlist/${userId}`)
       .then(res => setItems(res.data))
       .catch(err => console.log(err));
   };
@@ -16,12 +16,12 @@ function Wishlist() {
   }, []);
 
   const removeItem = (id) => {
-    axios.delete(`http://localhost:5000/wishlist/${id}`)
+    axios.delete(`https://ecommerce-scalar-labs-1.onrender.com/wishlist/${id}`)
       .then(fetchWishlist);
   };
 
   const addToCart = (productId) => {
-    axios.post("http://localhost:5000/cart/add", {
+    axios.post("https://ecommerce-scalar-labs-1.onrender.com/cart/add", {
       user_id: userId,
       product_id: productId,
       quantity: 1

@@ -8,7 +8,7 @@ function Cart() {
   const navigate = useNavigate();
 
   const fetchCart = () => {
-    axios.get(`http://localhost:5000/cart/${userId}`)
+    axios.get(`https://ecommerce-scalar-labs-1.onrender.com/cart/${userId}`)
       .then(res => setItems(res.data));
   };
 
@@ -17,14 +17,14 @@ function Cart() {
   }, []);
 
   const updateQty = (id, quantity) => {
-    axios.put("http://localhost:5000/cart/update", {
+    axios.put("https://ecommerce-scalar-labs-1.onrender.com/cart/update", {
       id,
       quantity,
     }).then(fetchCart);
   };
 
   const removeItem = (id) => {
-    axios.delete(`http://localhost:5000/cart/remove/${id}`)
+    axios.delete(`https://ecommerce-scalar-labs-1.onrender.com/cart/remove/${id}`)
       .then(fetchCart);
   };
 

@@ -6,7 +6,7 @@ function Orders() {
   const userId = localStorage.getItem("userId") || 1;
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/orders/${userId}`)
+    axios.get(`https://ecommerce-scalar-labs-1.onrender.com/orders/${userId}`)
       .then(res => setOrders(res.data))
       .catch(err => console.log(err));
   }, []);

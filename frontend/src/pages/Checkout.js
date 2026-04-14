@@ -18,7 +18,7 @@ const directProduct = location.state?.product;
     setItems([{ ...directProduct, quantity: 1 }]);
   } else {
     // ✅ CART FLOW
-    axios.get(`http://localhost:5000/cart/${userId}`)
+    axios.get(`https://ecommerce-scalar-labs-1.onrender.com/cart/${userId}`)
       .then(res => setItems(res.data))
       .catch(err => console.log(err));
   }
@@ -35,7 +35,7 @@ const directProduct = location.state?.product;
       return;
     }
 
-    axios.post("http://localhost:5000/order", {
+    axios.post("https://ecommerce-scalar-labs-1.onrender.com/order", {
       user_id: userId,
       total,
       address,

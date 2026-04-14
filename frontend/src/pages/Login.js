@@ -8,7 +8,7 @@ function Login() {
   const navigate = useNavigate();
 
   const login = () => {
-    axios.post("http://localhost:5000/login", { email, password })
+    axios.post("https://ecommerce-scalar-labs-1.onrender.com/login", { email, password })
       .then(res => {
         localStorage.setItem("userId", res.data.userId);
         localStorage.setItem("email", email);

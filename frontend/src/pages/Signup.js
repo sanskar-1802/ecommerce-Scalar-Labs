@@ -9,14 +9,14 @@ function Signup() {
   const navigate = useNavigate();
 
 const signup = () => {
-  axios.post("http://localhost:5000/signup", {
+  axios.post("https://ecommerce-scalar-labs-1.onrender.com/signup", {
     name,
     email,
     password
   })
   .then(() => {
     // 🔥 auto login after signup
-    return axios.post("http://localhost:5000/login", {
+    return axios.post("https://ecommerce-scalar-labs-1.onrender.com/login", {
       email,
       password
     });
