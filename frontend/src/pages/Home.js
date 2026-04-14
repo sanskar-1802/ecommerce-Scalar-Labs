@@ -1,0 +1,115 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import ProductCard from "../components/ProductCard";
+import { toast } from "react-toastify";
+
+function Home() {
+  const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) navigate("/login");
+  }, []);
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) return;
+
+    axios
+      .get(`http://localhost:5000/products?search=${search}&category=${category}`)
+      .then((res) => setProducts(res.data))
+      .catch((err) => console.log(err));
+  }, [search, category]);
+
+  const addToCart = (id) => {
+    const userId = localStorage.getItem("userId");
+
+    axios.post("http://localhost:5000/cart/add", {
+      user_id: userId,
+      product_id: id,
+      quantity: 1,
+    });
+
+    toast.success("Added to cart 🛒");
+  };
+
+  const addToWishlist = (id) => {
+    const userId = localStorage.getItem("userId");
+
+    axios.post("http://localhost:5000/wishlist", {
+      user_id: userId,
+      product_id: id,
+    });
+
+    toast.success("Added to wishlist ❤️");
+  };
+
+  return (
+    <div style={container}>
+      <h2 style={{ marginBottom: "20px" }}>Products</h2>
+
+      <div style={searchBar}>
+        <input
+          placeholder="Search products..."
+          onChange={(e) => setSearch(e.target.value)}
+          style={input}
+        />
+
+        <select onChange={(e) => setCategory(e.target.value)} style={select}>
+          <option value="">All Categories</option>
+          <option value="electronics">Electronics</option>
+          <option value="fashion">Fashion</option>
+        </select>
+      </div>
+
+      <div style={grid}>
+        {products.map((p) => (
+          <ProductCard
+            key={p.id}
+            product={p}
+            addToCart={addToCart}
+            addToWishlist={addToWishlist}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const container = {
+  padding: "20px",
+  background: "#f3f3f3",
+  minHeight: "100vh"
+};
+
+const searchBar = {
+  display: "flex",
+  gap: "10px",
+  marginBottom: "20px",
+  flexWrap: "wrap"
+};
+
+const input = {
+  padding: "10px",
+  flex: "1",
+  borderRadius: "6px",
+  border: "1px solid #ccc"
+};
+
+const select = {
+  padding: "10px",
+  borderRadius: "6px",
+  border: "1px solid #ccc"
+};
+
+const grid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fill, minmax(250px,1fr))",
+  gap: "20px"
+};
+
+export default Home;
