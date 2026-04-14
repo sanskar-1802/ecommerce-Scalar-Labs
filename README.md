@@ -124,6 +124,12 @@ npm run dev
 
 ---
 
+## 🌐 Live Deployment
+
+* **Frontend (Vercel):** https://ecommerce-scalar-labs.vercel.app/
+* **Backend (Render):** https://ecommerce-scalar-labs-1.onrender.com/
+
+
 ## 🧠 Key Learnings
 
 * Built a full-stack application from scratch
