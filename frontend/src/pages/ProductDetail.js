@@ -17,7 +17,7 @@ function ProductDetail() {
       .catch(err => console.log(err));
   }, [id]);
 
-  const userId = localStorage.getItem("userId");
+  const userId = localStorage.getItem("userId") || 1;
 
   const addToCart = () => {
     axios.post("https://ecommerce-scalar-labs-1.onrender.com/cart/add", {

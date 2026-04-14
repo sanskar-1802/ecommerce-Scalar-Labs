@@ -10,10 +10,7 @@ function Home() {
   const [category, setCategory] = useState("");
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const userId = localStorage.getItem("userId");
-  //   if (!userId) navigate("/login");
-  // }, []);
+
 useEffect(() => {
   axios
     .get(`https://ecommerce-scalar-labs-1.onrender.com/products?search=${search}&category=${category}`)
@@ -21,16 +18,6 @@ useEffect(() => {
     .catch((err) => console.log(err));
 }, [search, category]);
 
-
-  useEffect(() => {
-    const userId = localStorage.getItem("userId");
-    if (!userId) return;
-
-    axios
-      .get(`https://ecommerce-scalar-labs-1.onrender.com/products?search=${search}&category=${category}`)
-      .then((res) => setProducts(res.data))
-      .catch((err) => console.log(err));
-  }, [search, category]);
 
   const addToCart = (id) => {
     const userId = localStorage.getItem("userId");
