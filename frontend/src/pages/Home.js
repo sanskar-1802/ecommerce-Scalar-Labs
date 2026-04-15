@@ -20,27 +20,27 @@ useEffect(() => {
 
 
   const addToCart = (id) => {
-    const userId = localStorage.getItem("userId");
+  const userId = localStorage.getItem("userId") || 1;
 
-    axios.post("https://ecommerce-scalar-labs-1.onrender.com/cart/add", {
-      user_id: userId,
-      product_id: id,
-      quantity: 1,
-    });
+  axios.post("https://ecommerce-scalar-labs-1.onrender.com/cart/add", {
+    user_id: userId,
+    product_id: id,
+    quantity: 1,
+  })
+  .then(() => toast.success("Added to cart 🛒"))
+  .catch(() => toast.error("Failed to add ❌"));
+};
 
-    toast.success("Added to cart 🛒");
-  };
+const addToWishlist = (id) => {
+  const userId = localStorage.getItem("userId") || 1;
 
-  const addToWishlist = (id) => {
-    const userId = localStorage.getItem("userId");
-
-    axios.post("https://ecommerce-scalar-labs-1.onrender.com/wishlist", {
-      user_id: userId,
-      product_id: id,
-    });
-
-    toast.success("Added to wishlist ❤️");
-  };
+  axios.post("https://ecommerce-scalar-labs-1.onrender.com/wishlist", {
+    user_id: userId,
+    product_id: id,
+  })
+  .then(() => toast.success("Added to wishlist ❤️"))
+  .catch(() => toast.error("Failed ❌"));
+};
 
   return (
     <div style={container}>
